@@ -28,7 +28,6 @@
 
     var dataset = 0;
 
-    /*
     var intervalMS = function(d) {
         return d3.format(",.0f")(d) + ' ms';
     };
@@ -44,9 +43,8 @@
         }
         return intervalMS(d);
     };
-    */
 
-    var format1 = d3.format("g");
+    var format1 = interval;
     var format2 = d3.format("d");
 
     function updateTitle(type, name, id) {
@@ -60,28 +58,16 @@
             //.deepLink('GB')
             //.deepLink('US','USA-3521')
             .topojsonPrefix('topojson')
-            .keyTitle('Population')
-            .toolTipTitle('Population')
+            .keyTitle('Avg Latency')
+            .toolTipTitle('Latency')
             .toolTipColor("#74c476")
-            .format(format1)
+            .format(interval)
             .onZoom(updateTitle)
             .dataset(0)
             .zoomDataPreloader(function(type,countryId,provinceId,dataset,name) {
                 console.log('preload data for ',type,countryId,provinceId);
             })
             .zoomDataLoader(function(type,countryId,provinceId,dataset,name,callback) {
-		if (type == 'world') {
-			d3.csv('popdata/pop_country.csv', function(data) {
-				var popdata = {}, i;
-				for (i = 0; i < data.length; i++) {
-					popdata[data[i].code] = parseInt(data[i].population);
-				}
-				return callback && callback(countryId,provinceId, dataset, popdata);
-			});
-		} else {
-			return callback && callback(countryId,provinceId, dataset, {});
-		}
-		/*
                 setTimeout(function() {
                     console.log('load data for ',type,countryId,provinceId,name,dataset);
                     if (countryId == 'GB') {
@@ -116,7 +102,6 @@
                         return callback && callback(countryId,provinceId,dataset,null);
                     }
                 },0);
-		*/
             });
 
     var svg = d3.select("svg").call(map);
