@@ -8,15 +8,33 @@
     <script type="text/javascript" src="libs/topojson.v1.min.js"></script>
     <script type="text/javascript" src="critter-world-map.js"></script>
     <link rel="stylesheet" type="text/css" href="critter-world-map.css" />
+    <style>
+        #container {
+            padding: 0;
+            margin: 0 auto;
+            width: 960px;
+        }
+        body {
+            font-family: Helvetica, sans-serif;
+        }
+    </style>
 </head>
 <body>
-<h1>Test map: </h1>
-<svg></svg>
-<br>
-<select id='chooser'>
-    <option>latency</option>
-    <option>volume</option>
-</select>
+<div id="container">
+    <h1>Test map: </h1>
+    <svg></svg>
+    <br><br>
+    Metric: <select id='chooser'>
+        <option>API Latency</option>
+        <option>Usage Volume</option>
+    </select>
+    <p>Example use cases:</p>
+    <ul>
+        <li>What is the average API Latency in the United Kingdom?</li>
+        <li>What is the average API Latency in Santa Cruz county, California?</li>
+        <li>What is the average Request Volume in West Flanders?</li>
+    </ul>
+</div>
 
 <script>
     var width = 960, height = 512;
@@ -78,13 +96,13 @@
                         });
                     } else if (countryId == 'BE') {
                         return callback && callback(countryId,provinceId, dataset, {
-                            'BEL-3479' : 108,
-                            'BEL-3478' : 209,
-                            'BEL-2' : 699
+                            'BEL-3479' : 12,
+                            'BEL-3478' : 301,
+                            'BEL-2' : 49
                         });
                     } else if (type=='country' && countryId == 'US') {
                         return callback && callback(countryId,provinceId, dataset, {
-                            'USA-3521' : 108
+                            'USA-3521' : 1016
                         });
                     } else if (type=='province' && provinceId == 'USA-3521') {
                         return callback && callback(countryId,provinceId, dataset, {
@@ -94,9 +112,9 @@
                         });
                     } else if (countryId == null) {
                         return callback && callback(countryId,provinceId, dataset, {
-                            'GB' : 50,
-                            'US' : 209,
-                            'BE' : 699
+                            'GB' : 166,
+                            'US' : 1016,
+                            'BE' : 362
                         });
                     } else {
                         return callback && callback(countryId,provinceId,dataset,null);
