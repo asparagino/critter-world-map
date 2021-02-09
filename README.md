@@ -40,3 +40,7 @@ into counties. These are identified by US County FIPS codes, for example: **0607
 For rapid ingestion or processing of discrete data points with latittude and longitude to group them into data to 
 work with this map, you may find it useful to load the topojson geometry files into an rtree index on your server
 and using it to calculate aggregate statistics.
+
+Author: Pete Setchell (asparagino)
+
+Copyright (c) 2013-2017, Crittercism, Inc
